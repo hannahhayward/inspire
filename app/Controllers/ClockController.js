@@ -21,24 +21,33 @@ export class ClockController {
       <h1> Good Evening </h1>
       </div>`
     }
-    if (hours == 0) {
-      hours = 12
+    if (hours == 12) {
+      period = 'pm'
+      template.innerHTML = /*html*/ `
+    <div class="text-center">
+      <h1> Good Evening </h1>
+      </div>`
+    }
+    if (hours >= 0 && hours <12) {
+      // hours <= 12
       period = 'am'
     }
     let time = `${hours}:${mins} ${period}`
     if (mins < 10) {
       time = `${hours}:0${mins} ${period}`
     }
-    template.innerHTML = /*html*/ `
-      <div class="text-center">
-        <h1> Good Morning </h1>
-        </div>`
     this.greeting(hours)
     // console.log(time)
     document.getElementById('clock').innerHTML = `<h3>${time}</h3>`
   }
   greeting(hours) {
+    let template = document.getElementById('greeting')
+
     if (hours >= 3 && hours < 12) {
+      template.innerHTML = /*html*/ `
+      <div class="text-center">
+        <h1> Good Morning </h1>
+        </div>`
     }
     if (hours >= 12 && hours < 17) {
       template.innerHTML = /*html*/ `

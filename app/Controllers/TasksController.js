@@ -15,10 +15,8 @@ export class TasksController {
     let count = document.getElementById('task-count')
     ProxyState.tasks.forEach(t => {
       count.innerHTML =
-      `${ProxyState.completeTasks} task(s) completed /${ProxyState.tasks.length} task(s)`
+        `${ProxyState.completeTasks} task(s) completed /${ProxyState.tasks.length} task(s)`
     })
-  }
-  taskCount() {
   }
   addTask(event) {
     try {
@@ -73,7 +71,7 @@ export class TasksController {
         let count = document.getElementById('task-count')
         ProxyState.tasks.forEach(t => {
           count.innerHTML =
-          `${ProxyState.completeTasks.length} tasks completed /${ProxyState.tasks.length} tasks`
+            `${ProxyState.completeTasks.length} tasks completed /${ProxyState.tasks.length} tasks`
         })
 
       }
@@ -90,7 +88,7 @@ export class TasksController {
   }
   taskStatus(id) {
     try {
-      tasksService.taskStatus(id)      
+      tasksService.taskStatus(id)
     } catch (error) {
       console.log(error)
     }

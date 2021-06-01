@@ -26,19 +26,28 @@ class TasksService {
 
   }
   async taskStatus(id) {
-    debugger
+    // ProxyState.completeTasks >= 0
+    // let taskCount = ProxyState.completeTasks
     let task = ProxyState.tasks.find(t => id == t.id)
     console.log(task, 'complete')
+    task.completed = !task.completed
     if (task.completed == true) {
-      task.completed = false
+      ProxyState.completeTasks += 1
+    }
+    if(task.completed == false && ProxyState.completeTasks == 0){
+      ProxyState.completeTasks = 0
+    }
+    if(task.completed == false && ProxyState.completeTasks >0){
       ProxyState.completeTasks -= 1
     }
-    task.completed = true
-    ProxyState.completeTasks += 1
+    // task.completed? ProxyState.completeTasks += 1 : task.completed == false ? ProxyState.completeTasks -= 1: ''
+    // ProxyState.completeTasks = ProxyState.completeTasks
+    debugger
     let res = await axios.put(url + id, task)
     ProxyState.tasks = ProxyState.tasks
+    // ProxyState.tasks.forEach(t => {t.completed == true; taskCount += 1})
+    ProxyState.completeTasks = ProxyState.completeTasks
     console.log(res, 'status change?')
-    // ANCHOR WHY WONT IT SAVE
   }
 }
 
