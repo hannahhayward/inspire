@@ -5,15 +5,15 @@ import { Quote } from "./Models/Quote.js"
 import { Task } from "./Models/Task.js"
 import { Image } from "./Models/Image.js"
 class AppState extends EventEmitter {
-  /**@type {Image} */
+  /**@type {Image}*/
   image = null
-  /**@type {Weather} */
+  /**@type {Weather}*/
   weather = null
-  /**@type  {Quote} */
+  /**@type  {Quote}*/
   quote = null
-  /**@type {Task[]} */
+  /**@type {Task[]}*/
   tasks = []
-  completeTasks = 0
+  completeTasks = []
   clock = 0
 }
 

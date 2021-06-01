@@ -7,17 +7,6 @@ export class TasksController {
     this.draw()
     this.getTasks()
   }
-  draw() {
-    // debugger
-    let template = ''
-    ProxyState.tasks.forEach(t => { template += t.template })
-    document.getElementById('list-items').innerHTML = template
-    let count = document.getElementById('task-count')
-    ProxyState.tasks.forEach(t => {
-      count.innerHTML =
-        `${ProxyState.completeTasks} task(s) completed /${ProxyState.tasks.length} task(s)`
-    })
-  }
   addTask(event) {
     try {
       event.preventDefault()
@@ -38,7 +27,7 @@ export class TasksController {
     catch (error) {
       console.log(error)
     }
-
+    
   }
   editTask(id) {
     let task = ProxyState.tasks.find(t => t.id == id)
@@ -64,18 +53,16 @@ export class TasksController {
             'Deleted!',
             'Your file has been deleted.',
             'success'
-          )
+            )
+          }
+        })) {
+          tasksService.deleteTask(id)
+          // let count = document.getElementById('task-count')
+          // ProxyState.tasks.forEach(t => {
+          //   count.innerHTML =
+          //   `${ProxyState.completeTasks.length} tasks completed /${ProxyState.tasks.length} tasks`
         }
-      })) {
-        tasksService.deleteTask(id)
-        let count = document.getElementById('task-count')
-        ProxyState.tasks.forEach(t => {
-          count.innerHTML =
-            `${ProxyState.completeTasks.length} tasks completed /${ProxyState.tasks.length} tasks`
-        })
-
-      }
-    } catch (error) {
+      } catch (error) {
       console.log(error)
     }
   }
@@ -92,5 +79,22 @@ export class TasksController {
     } catch (error) {
       console.log(error)
     }
+    this.draw()
+  }
+  draw() {
+    // debugger
+    // let completed = 0
+    // if (taskStatus) {
+    //   completed += 1
+    // }
+    console.log(ProxyState.completeTasks, 'completed task')
+    let template = ''
+    ProxyState.tasks.forEach(t => { template += t.template })
+    document.getElementById('list-items').innerHTML = template
+    let count = document.getElementById('task-count')
+    ProxyState.tasks.forEach(t => {
+      count.innerHTML =
+        `${ProxyState.completeTasks.length} task(s) completed /${ProxyState.tasks.length} task(s)`
+    })
   }
 }
