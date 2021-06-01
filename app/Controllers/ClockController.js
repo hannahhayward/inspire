@@ -24,15 +24,15 @@ export class ClockController {
     if (hours == 0) {
       hours = 12
       period = 'am'
-      template.innerHTML = /*html*/ `
-      <div class="text-center">
-        <h1> Good Morning </h1>
-        </div>`
     }
     let time = `${hours}:${mins} ${period}`
     if (mins < 10) {
       time = `${hours}:0${mins} ${period}`
     }
+    template.innerHTML = /*html*/ `
+      <div class="text-center">
+        <h1> Good Morning </h1>
+        </div>`
     this.greeting(hours)
     // console.log(time)
     document.getElementById('clock').innerHTML = `<h3>${time}</h3>`
