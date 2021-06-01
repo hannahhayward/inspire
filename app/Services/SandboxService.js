@@ -8,15 +8,3 @@
 export const imageApi = axios.create({
   baseURL: "https://bcw-sandbox.herokuapp.com/api/images"
 })
-const sandboxApi = axios.create({
-  baseURL: "https://bcw-sandbox.herokuapp.com/api/"
-})
-
-// class SandboxService{
-//   constructor(){}
-//  async setUser(formData){
-//   let user = formData
-
-// }
-// }
-// export const sandboxService = new SandboxService()
