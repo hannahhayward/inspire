@@ -8,6 +8,7 @@ export class TasksController {
     this.getTasks()
   }
   draw() {
+    // debugger
     let template = ''
     ProxyState.tasks.forEach(t => { template += t.template })
     document.getElementById('list-items').innerHTML = template

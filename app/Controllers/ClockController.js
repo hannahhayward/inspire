@@ -37,18 +37,8 @@ export class ClockController {
     // console.log(time)
     document.getElementById('clock').innerHTML = `<h3>${time}</h3>`
   }
-  // setUser(event) {
-  //   event.preventDefault()
-  //   let form = event.target
-  //   let formData = {
-  //     user: form.userName.value
-  //   }
-  //   document.getElementById('set-user').classList.add('d-none')
-  //   document.getElementById('main').classList.remove('d-none')
-  // }
   greeting(hours) {
     if (hours >= 3 && hours < 12) {
-
     }
     if (hours >= 12 && hours < 17) {
       template.innerHTML = /*html*/ `
@@ -57,7 +47,6 @@ export class ClockController {
       </div>`
     }
     if (hours >= 17 && hours < 24) {
-
     }
   }
 }

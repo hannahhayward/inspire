@@ -26,25 +26,17 @@ class TasksService {
 
   }
   async taskStatus(id) {
-    // debugger
+    debugger
     let task = ProxyState.tasks.find(t => id == t.id)
-    // Object.defineProperty(task, 'completed', {
-    //   value: 'true'
-    // })
+    console.log(task, 'complete')
     if (task.completed == true) {
-      Object.defineProperty(task, 'completed', {
-        value: false
-      })
+      task.completed = false
+      ProxyState.completeTasks -= 1
     }
-    if (task.completed == false) {
-      Object.defineProperty(task, 'completed', {
-        value: true
-      })
-    }
-    let res = await axios.put(url + id, task)
+    task.completed = true
     ProxyState.completeTasks += 1
+    let res = await axios.put(url + id, task)
     ProxyState.tasks = ProxyState.tasks
-    document.getElementById(id).checked =true
     console.log(res, 'status change?')
     // ANCHOR WHY WONT IT SAVE
   }
