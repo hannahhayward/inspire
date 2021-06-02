@@ -75,11 +75,7 @@ export class TasksController {
   }
   draw() {
     let tasksComplete = 0
-    ProxyState.tasks.forEach(t => {
-      if (t.completed == true) {
-        tasksComplete += 1
-      }
-    });
+    ProxyState.tasks.forEach(t => { t.completed == true ? tasksComplete += 1 : ''});
     let template = ''
     ProxyState.tasks.forEach(t => { template += t.template })
     document.getElementById('list-items').innerHTML = template
