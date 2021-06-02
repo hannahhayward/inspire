@@ -1,4 +1,5 @@
 import { ProxyState } from "../AppState.js";
+import { CompleteTask } from "../Models/CompleteTask.js";
 import { tasksService } from "../Services/TasksService.js";
 
 export class TasksController {

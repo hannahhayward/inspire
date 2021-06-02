@@ -1,4 +1,6 @@
 import { ProxyState } from "../AppState.js"
+import { TasksController } from "../Controllers/TasksController.js"
+import { CompleteTask } from "../Models/CompleteTask.js"
 import { Task } from "../Models/Task.js"
 
 let url = 'https://bcw-sandbox.herokuapp.com/api/hannah/todos/'
@@ -30,17 +32,21 @@ class TasksService {
     // ProxyState.completeTasks >= 0
     // let taskCount = ProxyState.completeTasks
     let task = ProxyState.tasks.find(t => id == t.id)
-    console.log(task, 'complete')
+    let taskComplete = new CompleteTask(task)
+    // console.log(task, 'complete')
     task.completed = !task.completed
     if (task.completed == true) {
       ProxyState.completeTasks.push(task)
+      ProxyState.completeTasks = [taskComplete, ...ProxyState.completeTasks]
+      // this.CompleteTask(task)
     }
     // if(task.completed == false && ProxyState.completeTasks == 0){
     //   ProxyState.completeTasks = 0
     // }
     if(task.completed == false){
-      let taskindex = ProxyState.completeTasks.findIndex(c => id == c.id)
-      ProxyState.completeTasks.splice(taskindex,1)
+      // let taskindex = ProxyState.completeTasks.findIndex(c => id == c.id)
+      // ProxyState.completeTasks.splice(taskindex,1)
+      ProxyState.completeTasks.filter(c => id != c.id)
     }
     // task.completed? ProxyState.completeTasks += 1 : task.completed == false ? ProxyState.completeTasks -= 1: ''
     // ProxyState.completeTasks = ProxyState.completeTasks
@@ -48,7 +54,8 @@ class TasksService {
     ProxyState.tasks = ProxyState.tasks
     // ProxyState.tasks.forEach(t => {t.completed == true; taskCount += 1})
     ProxyState.completeTasks = ProxyState.completeTasks
-    console.log(res, 'status change?')
+    // console.log(res, 'status change?')
+    // TasksController.updateCount(id)
   }
 }
 
