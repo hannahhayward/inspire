@@ -1,5 +1,4 @@
 import { ProxyState } from "../AppState.js";
-import { CompleteTask } from "../Models/CompleteTask.js";
 import { tasksService } from "../Services/TasksService.js";
 
 export class TasksController {
@@ -11,7 +10,6 @@ export class TasksController {
   addTask(event) {
     try {
       event.preventDefault()
-      // console.log('add task worked')
       let form = event.target
       let formData = {
         description: form.title.value,
@@ -28,17 +26,14 @@ export class TasksController {
     catch (error) {
       console.log(error)
     }
-    
   }
   editTask(id) {
     let task = ProxyState.tasks.find(t => t.id == id)
-    // console.log(task)
     let form = document.getElementById('task-form')
     form.taskId.value = task.id
     form.title.value = task.description
   }
   deleteTask(id) {
-    // console.log(id, 'delete task in controller')
     try {
       if (Swal.fire({
         title: 'Are you sure?',
@@ -54,16 +49,12 @@ export class TasksController {
             'Deleted!',
             'Your file has been deleted.',
             'success'
-            )
-          }
-        })) {
-          tasksService.deleteTask(id)
-          // let count = document.getElementById('task-count')
-          // ProxyState.tasks.forEach(t => {
-          //   count.innerHTML =
-          //   `${ProxyState.completeTasks.length} tasks completed /${ProxyState.tasks.length} tasks`
+          )
         }
-      } catch (error) {
+      })) {
+        tasksService.deleteTask(id)
+      }
+    } catch (error) {
       console.log(error)
     }
   }
@@ -83,19 +74,19 @@ export class TasksController {
     this.draw()
   }
   draw() {
-    // debugger
-    // let completed = 0
-    // if (taskStatus) {
-    //   completed += 1
-    // }
-    console.log(ProxyState.completeTasks, 'completed task')
+    let tasksComplete = 0
+    ProxyState.tasks.forEach(t => {
+      if (t.completed == true) {
+        tasksComplete += 1
+      }
+    });
     let template = ''
     ProxyState.tasks.forEach(t => { template += t.template })
     document.getElementById('list-items').innerHTML = template
     let count = document.getElementById('task-count')
     ProxyState.tasks.forEach(t => {
       count.innerHTML =
-        `${ProxyState.completeTasks.length} task(s) completed /${ProxyState.tasks.length} task(s)`
+        `${tasksComplete} task(s) completed /${ProxyState.tasks.length} task(s)`
     })
   }
 }

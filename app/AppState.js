@@ -4,7 +4,6 @@ import { Weather } from "./Models/Weather.js"
 import { Quote } from "./Models/Quote.js"
 import { Task } from "./Models/Task.js"
 import { Image } from "./Models/Image.js"
-import { CompleteTask } from "./Models/CompleteTask.js"
 class AppState extends EventEmitter {
   /**@type {Image}*/
   image = null
@@ -14,8 +13,6 @@ class AppState extends EventEmitter {
   quote = null
   /**@type {Task[]}*/
   tasks = []
-/**@type {CompleteTask[]} */
-  completeTasks = []
   clock = 0
 }
 
